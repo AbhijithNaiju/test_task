@@ -34,9 +34,5 @@ var data = [{
     start: 400,
     duration: 30,
     title: "Push up branch"
-}, {
-    start: 420,
-    duration: 30,
-    title: "Push up branch"
 }
 ];

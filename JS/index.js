@@ -1,7 +1,3 @@
-
-let overlapedtask=[];
-let overlapingtask=[];
-// Sorting the array based on start time
 for(i=0;i<data.length;i++)
 {
   for(j=0;j<(data.length-1-i);j++)
@@ -14,55 +10,37 @@ for(i=0;i<data.length;i++)
     }
   }
 }
-
-for(i=0;i<data.length-1;i++)
-{
-  if(data[i].duration>Math.abs(data[i].start-data[i+1].start))
-  {
-    overlapingtask.push(i);
-    overlapingtask.push(i+1);
-    // if(overlapingtask.includes(i+1)==false)
-    //   {
-    //     overlapingtask.push(i+1);
-    //   }  
-  }
-}
-
+flag=1;
+widthDivision=1;
 for(i=0;i<data.length;i++)
 {
-  flag=0
   var div = document.createElement("div");
   height = data[i].duration + "px";
   div.style.height = height;
-
-if(overlapingtask.includes(i) && overlapingtask.includes(i-1)==false)
-{
-  flag=1;
-  div.style.width="45%";
-  div.style.left="45%";
-}
-else if(overlapingtask.includes(i) && overlapingtask.includes(i-1))
-{
-  if(flag==0)
-  {
-    div.style.width="45%";
-    div.style.left="45%";
-    flag=1;
-  }
-  else
-  {
-    div.style.width="45%";
-    flag=0;
-  }
-}
-else
-{
-  div.style.width="90%";
-  flag=0;
-}
   startingTime=data[i].start+"px";
   div.style.top = startingTime;
   div.innerHTML = data[i].title;
   div.classList.add("time_display");
+  if((i<data.length-1 && Number(data[i].start+data[i].duration)>Number(data[i+1].start)) || (i>0 && Number(data[i-1].start+data[i-1].duration)>Number(data[i].start)))
+  {
+    left=(45)*flag + "%";
+    div.style.left=left;
+    if(flag==1)
+    {
+      flag=0;
+    }
+    else
+    {
+      flag=1;
+    }
+    widthDivision=2;
+  }
+  else
+  {
+    flag=1;
+    widthDivision=1;
+  }
+  width=(90/widthDivision)+"%"
+  div.style.width=width;
   document.getElementById("timeStart").appendChild(div);
 }
