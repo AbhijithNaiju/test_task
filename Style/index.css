@@ -71,11 +71,11 @@ main
 }
 .time_display
 {
-    border-left: 2px solid rgb(96, 156, 196);
+    border-left: 2px solid #699ECC;
     position: absolute;
     font-size: 8px;
     color: #464646;
-    background-color:rgb(227, 239, 250);
+    background-color:#E1ECF4;
     box-sizing: border-box;
 }
 
